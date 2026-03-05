@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript Mastery — Plataforma de Aprendizaje</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <button class="mob-menu" onclick="toggleSidebar()">☰</button>
+
+    <div class="shell">
+
+        <!-- SIDEBAR -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="logo-badge">
+                    <span>TS</span>
+                </div>
+                <h1>TypeScript<br>Mastery</h1>
+                <p>De cero a React profesional</p>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-label">Inicio</div>
+                <div class="nav-item active" onclick="showPage('home')">
+                    <span class="nav-icon">🏠</span> Inicio
+                </div>
+                <div class="nav-item" onclick="showPage('cheatsheet')">
+                    <span class="nav-icon">📋</span> Cheatsheet
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-label">Nivel 1 — Fundamentos</div>
+                <div class="nav-item" onclick="showPage('t1')"><span class="nav-icon">🔵</span> Tipos básicos <span class="nav-badge">Teoría</span></div>
+                <div class="nav-item" onclick="showPage('t2')"><span class="nav-icon">⚙️</span> Funciones <span class="nav-badge">Teoría</span></div>
+                <div class="nav-item" onclick="showPage('t3')"><span class="nav-icon">📦</span> Objetos e Interfaces <span class="nav-badge">Teoría</span></div>
+                <div class="nav-item" onclick="showPage('t4')"><span class="nav-icon">⚖️</span> Type vs Interface <span class="nav-badge">Teoría</span></div>
+                <div class="nav-item" onclick="showPage('t5')"><span class="nav-icon">🔀</span> Union Types <span class="nav-badge">Teoría</span></div>
+                <div class="nav-item" onclick="showPage('t6')"><span class="nav-icon">🧬</span> Generics <span class="nav-badge">Teoría</span></div>
+                <div class="nav-item" onclick="showPage('t7')"><span class="nav-icon">🛠️</span> Utility Types <span class="nav-badge">Teoría</span></div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-label">Nivel 2 — React + TS</div>
+                <div class="nav-item" onclick="showPage('r1')"><span class="nav-icon">⚛️</span> Tipar Props <span class="nav-badge react">React</span></div>
+                <div class="nav-item" onclick="showPage('r2')"><span class="nav-icon">🪝</span> Hooks tipados <span class="nav-badge react">React</span></div>
+                <div class="nav-item" onclick="showPage('r3')"><span class="nav-icon">🎯</span> Eventos <span class="nav-badge react">React</span></div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-label">Ejercicios</div>
+                <div class="nav-item" onclick="showPage('exercises')"><span class="nav-icon">💡</span> Todos los ejercicios <span class="nav-badge ex" id="ex-badge">0/20</span></div>
+            </div>
+
+            <div class="progress-wrap">
+                <div class="progress-label">
+                    <span>Progreso general</span>
+                    <span id="progress-pct">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main" id="main">
+
+            <!-- HOME -->
+            <div class="page active" id="page-home">
+                <div class="hero">
+                    <h1 class="hero-kicker">Plataforma de aprendizaje Interactivo de TS</h1>
+
+                    <p>Desde tipos básicos hasta React profesional. Teoría clara, ejercicios prácticos y validación instantánea de tu código.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-val">2</div>
+                            <div class="stat-label">Niveles</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-val">10</div>
+                            <div class="stat-label">Módulos teóricos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-val">20</div>
+                            <div class="stat-label">Ejercicios</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider" style="margin-top:32px">
+                    <h3>🎯 Ruta de aprendizaje</h3>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card" onclick="showPage('t1')">
+                        <div class="card-icon">🔵</div>
+                        <h3>Tipos básicos</h3>
+                        <p>string, number, boolean, unknown, never. La diferencia entre any y unknown que todo dev debe saber.</p>
+                        <div class="card-meta"><span class="tag theory">Teoría</span><span class="tag exercise">Ejercicios</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('t2')">
+                        <div class="card-icon">⚙️</div>
+                        <h3>Funciones tipadas</h3>
+                        <p>Parámetros, tipos de retorno, funciones como tipos. Esencial para cualquier codebase serio.</p>
+                        <div class="card-meta"><span class="tag theory">Teoría</span><span class="tag exercise">Ejercicios</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('t3')">
+                        <div class="card-icon">📦</div>
+                        <h3>Objetos e Interfaces</h3>
+                        <p>Propiedades opcionales, Readonly, extender interfaces, intersection types.</p>
+                        <div class="card-meta"><span class="tag theory">Teoría</span><span class="tag exercise">Ejercicios</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('t4')">
+                        <div class="card-icon">⚖️</div>
+                        <h3>Type vs Interface</h3>
+                        <p>La pregunta más frecuente en entrevistas. Cuándo usar cada uno y por qué.</p>
+                        <div class="card-meta"><span class="tag theory">Teoría</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('t5')">
+                        <div class="card-icon">🔀</div>
+                        <h3>Union Types y Narrowing</h3>
+                        <p>Tipos unión, type guards, narrowing con typeof e instanceof.</p>
+                        <div class="card-meta"><span class="tag theory">Teoría</span><span class="tag exercise">Ejercicios</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('t6')">
+                        <div class="card-icon">🧬</div>
+                        <h3>Generics</h3>
+                        <p>El poder real de TypeScript. Constraints, múltiples type params, inferencia.</p>
+                        <div class="card-meta"><span class="tag theory">Teoría</span><span class="tag exercise">Ejercicios</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('t7')">
+                        <div class="card-icon">🛠️</div>
+                        <h3>Utility Types</h3>
+                        <p>Partial, Required, Pick, Omit, Record, Readonly. Los usarás todos los días.</p>
+                        <div class="card-meta"><span class="tag theory">Teoría</span><span class="tag exercise">Ejercicios</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('r1')">
+                        <div class="card-icon">⚛️</div>
+                        <h3>TypeScript + React</h3>
+                        <p>Props tipadas, useState, eventos, useRef, children, custom hooks. Nivel entrevista.</p>
+                        <div class="card-meta"><span class="tag react">React</span><span class="tag exercise">Ejercicios</span></div>
+                    </div>
+                    <div class="card" onclick="showPage('exercises')">
+                        <div class="card-icon">💡</div>
+                        <h3>20 Ejercicios prácticos</h3>
+                        <p>TS, JS, JSX y RxJS. Valida tu solución directamente en la plataforma con feedback detallado.</p>
+                        <div class="card-meta"><span class="tag exercise">JS</span><span class="tag exercise">JSX</span><span class="tag exercise">RxJS</span></div>
+                    </div>
+                </div>
+
+                <div class="section-divider" style="margin-top:16px">
+                    <h3>🚀 Cómo usar la plataforma</h3>
+                </div>
+                <div class="theory-body" style="max-width:100%;padding-top:24px">
+                    <div class="callout info">
+                        <span class="callout-icon">📝</span>
+                        <div><strong>Instrucciones de uso:</strong> Lee la teoría de cada módulo, luego ve a Ejercicios. Escribe tu solución en el área de texto, o resuélvelo en tu editor local y pega el resultado. Hacé clic en <strong>Validar</strong> y recibirás feedback inmediato con el error específico y cómo corregirlo.</div>
+                    </div>
+                    <div class="callout tip">
+                        <span class="callout-icon">💡</span>
+                        <div>Si te trabás, usá el botón <strong>Hint</strong> para ver una pista. Si querés ver la solución completa, hacé clic en <strong>Ver solución</strong> después de intentarlo.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHEATSHEET -->
+            <div class="page" id="page-cheatsheet">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Cheatsheet</div>
+                    <h2>📋 TypeScript Cheatsheet</h2>
+                    <p>Referencia rápida de los patrones más usados en TypeScript y React.</p>
+                </div>
+                <div class="cheat-grid">
+                    <div class="cheat-card">
+                        <div class="cheat-title">🔵 Tipos básicos</div>
+                        <div class="cheat-body"><span class="kw">let</span> nombre: <span class="ty">string</span> = <span class="st">"Ana"</span>;
+                            <span class="kw">let</span> edad: <span class="ty">number</span> = <span class="nu">25</span>;
+                            <span class="kw">let</span> activo: <span class="ty">boolean</span> = <span class="kw">true</span>;
+                            <span class="kw">let</span> dato: <span class="ty">unknown</span> = fetchData();
+                            <span class="kw">let</span> nada: <span class="ty">null</span> = <span class="kw">null</span>;
+                            <span class="kw">let</span> indefinido: <span class="ty">undefined</span> = <span class="kw">undefined</span>;
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">⚙️ Funciones</div>
+                        <div class="cheat-body"><span class="kw">const</span> <span class="fn">suma</span> = (a: <span class="ty">number</span>, b: <span class="ty">number</span>): <span class="ty">number</span> => a + b;
+
+                            <span class="kw">type</span> <span class="ty">Op</span> = (a: <span class="ty">number</span>, b: <span class="ty">number</span>) => <span class="ty">number</span>;
+                            <span class="kw">const</span> resta: <span class="ty">Op</span> = (a, b) => a - b;
+
+                            <span class="kw">function</span> <span class="fn">log</span>(msg: <span class="ty">string</span>): <span class="ty">void</span> {
+                            console.log(msg);
+                            }
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">📦 Interfaces</div>
+                        <div class="cheat-body"><span class="kw">interface</span> <span class="ty">User</span> {
+                            id: <span class="ty">number</span>;
+                            name: <span class="ty">string</span>;
+                            age?: <span class="ty">number</span>; <span class="cm">// opcional</span>
+                            <span class="kw">readonly</span> createdAt: <span class="ty">Date</span>;
+                            }
+
+                            <span class="kw">interface</span> <span class="ty">Admin</span> <span class="kw">extends</span> <span class="ty">User</span> {
+                            role: <span class="st">"admin"</span>;
+                            }
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">🔀 Union & Intersection</div>
+                        <div class="cheat-body"><span class="kw">type</span> <span class="ty">ID</span> = <span class="ty">string</span> | <span class="ty">number</span>;
+                            <span class="kw">type</span> <span class="ty">Status</span> = <span class="st">"ok"</span> | <span class="st">"error"</span> | <span class="st">"loading"</span>;
+
+                            <span class="cm">// Intersection</span>
+                            <span class="kw">type</span> <span class="ty">AdminUser</span> = <span class="ty">User</span> & { role: <span class="ty">string</span> };
+
+                            <span class="cm">// Narrowing</span>
+                            <span class="kw">if</span> (<span class="kw">typeof</span> id === <span class="st">"string"</span>) {
+                            id.toUpperCase(); <span class="cm">// TS sabe: string</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">🧬 Generics</div>
+                        <div class="cheat-body"><span class="kw">function</span> <span class="fn">identity</span>&lt;<span class="ty">T</span>&gt;(val: <span class="ty">T</span>): <span class="ty">T</span> { <span class="kw">return</span> val; }
+
+                            <span class="kw">function</span> <span class="fn">getLength</span>&lt;<span class="ty">T</span> <span class="kw">extends</span> { length: <span class="ty">number</span> }&gt;
+                            (item: <span class="ty">T</span>) { <span class="kw">return</span> item.length; }
+
+                            <span class="kw">type</span> <span class="ty">ApiResponse</span>&lt;<span class="ty">T</span>&gt; = {
+                            data: <span class="ty">T</span>;
+                            status: <span class="ty">number</span>;
+                            };
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">🛠️ Utility Types</div>
+                        <div class="cheat-body"><span class="ty">Partial</span>&lt;<span class="ty">User</span>&gt; <span class="cm">// todos opcionales</span>
+                            <span class="ty">Required</span>&lt;<span class="ty">User</span>&gt; <span class="cm">// todos requeridos</span>
+                            <span class="ty">Pick</span>&lt;<span class="ty">User</span>, <span class="st">"id" | "name"</span>&gt; <span class="cm">// subconjunto</span>
+                            <span class="ty">Omit</span>&lt;<span class="ty">User</span>, <span class="st">"password"</span>&gt; <span class="cm">// excluir campo</span>
+                            <span class="ty">Record</span>&lt;<span class="ty">string</span>, <span class="ty">number</span>&gt; <span class="cm">// mapa</span>
+                            <span class="ty">Readonly</span>&lt;<span class="ty">User</span>&gt; <span class="cm">// inmutable</span>
+                            <span class="ty">ReturnType</span>&lt;<span class="kw">typeof</span> fn&gt; <span class="cm">// tipo retorno</span>
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">⚛️ React Props</div>
+                        <div class="cheat-body"><span class="kw">interface</span> <span class="ty">ButtonProps</span> {
+                            label: <span class="ty">string</span>;
+                            onClick: () => <span class="ty">void</span>;
+                            disabled?: <span class="ty">boolean</span>;
+                            children?: <span class="ty">React.ReactNode</span>;
+                            variant?: <span class="st">"primary"</span> | <span class="st">"secondary"</span>;
+                            }
+
+                            <span class="kw">const</span> <span class="fn">Button</span> = ({ label, onClick }: <span class="ty">ButtonProps</span>) => ...
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">🪝 React Hooks</div>
+                        <div class="cheat-body"><span class="cm">// useState</span>
+                            <span class="kw">const</span> [user, setUser] = useState&lt;<span class="ty">User</span> | <span class="ty">null</span>&gt;(<span class="kw">null</span>);
+
+                            <span class="cm">// useRef</span>
+                            <span class="kw">const</span> inputRef = useRef&lt;<span class="ty">HTMLInputElement</span>&gt;(<span class="kw">null</span>);
+
+                            <span class="cm">// useReducer</span>
+                            <span class="kw">type</span> <span class="ty">Action</span> = { type: <span class="st">"increment"</span> } | { type: <span class="st">"reset"</span> };
+                            <span class="kw">const</span> [state, dispatch] = useReducer&lt;<span class="ty">Reducer</span>&lt;<span class="ty">State</span>, <span class="ty">Action</span>&gt;&gt;(reducer, init);
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">🎯 Eventos React</div>
+                        <div class="cheat-body"><span class="cm">// Input</span>
+                            <span class="kw">const</span> <span class="fn">onChange</span> = (e: <span class="ty">React.ChangeEvent</span>&lt;<span class="ty">HTMLInputElement</span>&gt;) => {};
+
+                            <span class="cm">// Button click</span>
+                            <span class="kw">const</span> <span class="fn">onClick</span> = (e: <span class="ty">React.MouseEvent</span>&lt;<span class="ty">HTMLButtonElement</span>&gt;) => {};
+
+                            <span class="cm">// Form submit</span>
+                            <span class="kw">const</span> <span class="fn">onSubmit</span> = (e: <span class="ty">React.FormEvent</span>&lt;<span class="ty">HTMLFormElement</span>&gt;) => {
+                            e.preventDefault();
+                            };
+                        </div>
+                    </div>
+                    <div class="cheat-card">
+                        <div class="cheat-title">📡 RxJS básico</div>
+                        <div class="cheat-body"><span class="kw">import</span> { Observable, Subject, BehaviorSubject } <span class="kw">from</span> <span class="st">'rxjs'</span>;
+                            <span class="kw">import</span> { map, filter, switchMap } <span class="kw">from</span> <span class="st">'rxjs/operators'</span>;
+
+                            <span class="kw">const</span> obs$: <span class="ty">Observable</span>&lt;<span class="ty">number</span>&gt; = <span class="kw">new</span> Observable(sub => {
+                            sub.next(<span class="nu">1</span>);
+                            });
+
+                            <span class="kw">const</span> subject$ = <span class="kw">new</span> <span class="ty">Subject</span>&lt;<span class="ty">string</span>&gt;();
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORIA 1: TIPOS BASICOS -->
+            <div class="page" id="page-t1">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 1 / Tipos básicos</div>
+                    <h2>🔵 Tipos básicos</h2>
+                    <p>El núcleo de TypeScript. Si no entendés estos tipos, vas a sufrir en cualquier framework.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>Los tipos primitivos</h3>
+                    <p>TypeScript agrega tipado estático a JavaScript. Los tipos básicos son:</p>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Tipos primitivos</span>
+<span class="kw">let</span> nombre: <span class="ty">string</span> = <span class="st">"María"</span>;
+<span class="kw">let</span> edad: <span class="ty">number</span> = <span class="nu">28</span>;
+<span class="kw">let</span> activo: <span class="ty">boolean</span> = <span class="kw">true</span>;
+<span class="kw">let</span> nada: <span class="ty">null</span> = <span class="kw">null</span>;
+<span class="kw">let</span> sinDef: <span class="ty">undefined</span> = <span class="kw">undefined</span>;
+
+<span class="cm">// Arrays</span>
+<span class="kw">let</span> nums: <span class="ty">number</span>[] = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>];
+<span class="kw">let</span> nombres: <span class="ty">Array</span>&lt;<span class="ty">string</span>&gt; = [<span class="st">"Ana"</span>, <span class="st">"Luis"</span>];
+
+<span class="cm">// Tuplas</span>
+<span class="kw">let</span> par: [<span class="ty">string</span>, <span class="ty">number</span>] = [<span class="st">"edad"</span>, <span class="nu">30</span>];</pre>
+                    </div>
+
+                    <h3>⚠️ any vs unknown — La diferencia crítica</h3>
+                    <div class="callout danger">
+                        <span class="callout-icon">🚫</span>
+                        <div><strong>any</strong> desactiva completamente TypeScript. Si usás <code>any</code>, le estás diciendo a TS "no me controles esto". Es como no usar TypeScript.</div>
+                    </div>
+                    <div class="callout tip">
+                        <span class="callout-icon">✅</span>
+                        <div><strong>unknown</strong> es la alternativa segura. TS te obliga a validar el tipo antes de usar el valor. Es el tipo correcto para valores que no conocés de antemano (respuestas de API, valores externos).</div>
+                    </div>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// ❌ any — evitar siempre</span>
+<span class="kw">let</span> dato: <span class="ty">any</span> = fetchData();
+dato.toUpperCase(); <span class="cm">// TS no protesta, pero puede romper en runtime</span>
+
+<span class="cm">// ✅ unknown — el correcto</span>
+<span class="kw">let</span> dato2: <span class="ty">unknown</span> = fetchData();
+<span class="cm">// dato2.toUpperCase(); // ❌ Error: necesitás validar primero</span>
+
+<span class="kw">if</span> (<span class="kw">typeof</span> dato2 === <span class="st">"string"</span>) {
+  dato2.toUpperCase(); <span class="cm">// ✅ Ahora TS sabe que es string</span>
+}</pre>
+                    </div>
+
+                    <h3>void y never</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// void — funciones que no retornan nada</span>
+<span class="kw">function</span> <span class="fn">log</span>(msg: <span class="ty">string</span>): <span class="ty">void</span> {
+  console.log(msg);
+}
+
+<span class="cm">// never — funciones que nunca terminan o siempre lanzan error</span>
+<span class="kw">function</span> <span class="fn">lanzarError</span>(msg: <span class="ty">string</span>): <span class="ty">never</span> {
+  <span class="kw">throw new</span> Error(msg);
+}
+
+<span class="cm">// never también en exhaustive checks</span>
+<span class="kw">function</span> <span class="fn">assertNever</span>(x: <span class="ty">never</span>): <span class="ty">never</span> {
+  <span class="kw">throw new</span> Error(<span class="st">"Caso no manejado: "</span> + x);
+}</pre>
+                    </div>
+
+                    <h3>Type Assertions</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Cuando vos sabés más que TS</span>
+<span class="kw">const</span> input = document.getElementById(<span class="st">"email"</span>) <span class="kw">as</span> <span class="ty">HTMLInputElement</span>;
+<span class="kw">const</span> valor = input.value; <span class="cm">// TS sabe que es HTMLInputElement</span>
+
+<span class="cm">// Alternativa con genéricos (no funciona en JSX)</span>
+<span class="kw">const</span> input2 = &lt;<span class="ty">HTMLInputElement</span>&gt;document.getElementById(<span class="st">"email"</span>);</pre>
+                    </div>
+
+                    <div class="callout info">
+                        <span class="callout-icon">💡</span>
+                        <div>TypeScript infiere tipos automáticamente. Si escribís <code>let x = 5</code>, TS sabe que x es <strong>number</strong>. Solo necesitás anotar tipos cuando TS no puede inferirlos o cuando querés ser explícito.</div>
+                    </div>
+
+                    <div style="margin-top:32px">
+                        <button class="start-btn" onclick="showPage('exercises')">💡 Ir a ejercicios →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORIA 2: FUNCIONES -->
+            <div class="page" id="page-t2">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 1 / Funciones</div>
+                    <h2>⚙️ Funciones tipadas</h2>
+                    <p>Tipar funciones correctamente es fundamental para cualquier codebase TypeScript.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>Tipado básico de funciones</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Función declarada</span>
+<span class="kw">function</span> <span class="fn">suma</span>(a: <span class="ty">number</span>, b: <span class="ty">number</span>): <span class="ty">number</span> {
+  <span class="kw">return</span> a + b;
+}
+
+<span class="cm">// Arrow function</span>
+<span class="kw">const</span> <span class="fn">resta</span> = (a: <span class="ty">number</span>, b: <span class="ty">number</span>): <span class="ty">number</span> => a - b;
+
+<span class="cm">// Parámetros opcionales y con default</span>
+<span class="kw">function</span> <span class="fn">saludar</span>(nombre: <span class="ty">string</span>, saludo?: <span class="ty">string</span>): <span class="ty">string</span> {
+  <span class="kw">return</span> <span class="st">`${saludo ?? "Hola"}, ${nombre}!`</span>;
+}
+
+<span class="cm">// Resto de parámetros</span>
+<span class="kw">function</span> <span class="fn">sumarTodos</span>(...nums: <span class="ty">number</span>[]): <span class="ty">number</span> {
+  <span class="kw">return</span> nums.reduce((a, b) => a + b, <span class="nu">0</span>);
+}</pre>
+                    </div>
+
+                    <h3>Funciones como tipos</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Definir un tipo para funciones</span>
+<span class="kw">type</span> <span class="ty">Operacion</span> = (a: <span class="ty">number</span>, b: <span class="ty">number</span>) => <span class="ty">number</span>;
+
+<span class="kw">const</span> multiplicar: <span class="ty">Operacion</span> = (a, b) => a * b;
+
+<span class="cm">// Función como parámetro (callback)</span>
+<span class="kw">function</span> <span class="fn">aplicar</span>(a: <span class="ty">number</span>, b: <span class="ty">number</span>, operacion: <span class="ty">Operacion</span>): <span class="ty">number</span> {
+  <span class="kw">return</span> operacion(a, b);
+}
+
+<span class="cm">// Función que retorna función</span>
+<span class="kw">function</span> <span class="fn">multiplicarPor</span>(factor: <span class="ty">number</span>): (n: <span class="ty">number</span>) => <span class="ty">number</span> {
+  <span class="kw">return</span> (n) => n * factor;
+}
+<span class="kw">const</span> porDos = <span class="fn">multiplicarPor</span>(<span class="nu">2</span>);
+porDos(<span class="nu">5</span>); <span class="cm">// 10</span></pre>
+                    </div>
+
+                    <h3>Overloads</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Misma función, distintos tipos de parámetros</span>
+<span class="kw">function</span> <span class="fn">formatear</span>(valor: <span class="ty">number</span>): <span class="ty">string</span>;
+<span class="kw">function</span> <span class="fn">formatear</span>(valor: <span class="ty">string</span>): <span class="ty">string</span>;
+<span class="kw">function</span> <span class="fn">formatear</span>(valor: <span class="ty">number</span> | <span class="ty">string</span>): <span class="ty">string</span> {
+  <span class="kw">if</span> (<span class="kw">typeof</span> valor === <span class="st">"number"</span>) <span class="kw">return</span> valor.toFixed(<span class="nu">2</span>);
+  <span class="kw">return</span> valor.trim();
+}</pre>
+                    </div>
+
+                    <h3>ReturnType — Inferir el tipo de retorno</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">function</span> <span class="fn">getUser</span>() {
+  <span class="kw">return</span> { id: <span class="nu">1</span>, name: <span class="st">"Ana"</span>, role: <span class="st">"admin"</span> <span class="kw">as const</span> };
+}
+
+<span class="cm">// ReturnType infiere el tipo de retorno de getUser</span>
+<span class="kw">type</span> <span class="ty">User</span> = <span class="ty">ReturnType</span>&lt;<span class="kw">typeof</span> <span class="fn">getUser</span>&gt;;
+<span class="cm">// { id: number; name: string; role: "admin" }</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORIA 3: INTERFACES -->
+            <div class="page" id="page-t3">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 1 / Objetos e Interfaces</div>
+                    <h2>📦 Objetos e Interfaces</h2>
+                    <p>Cómo modelar estructuras de datos complejas con TypeScript.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>Interface básica</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">interface</span> <span class="ty">User</span> {
+  id: <span class="ty">number</span>;
+  name: <span class="ty">string</span>;
+  email: <span class="ty">string</span>;
+  age?: <span class="ty">number</span>; <span class="cm">// Opcional</span>
+  <span class="kw">readonly</span> createdAt: <span class="ty">Date</span>; <span class="cm">// No se puede modificar</span>
+}
+
+<span class="kw">const</span> user: <span class="ty">User</span> = {
+  id: <span class="nu">1</span>,
+  name: <span class="st">"Carlos"</span>,
+  email: <span class="st">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="224143504e4d51624f434b4e0c414d4f">[email&#160;protected]</a>"</span>,
+  createdAt: <span class="kw">new</span> Date()
+};
+
+<span class="cm">// user.createdAt = new Date(); // ❌ Error: readonly</span></pre>
+                    </div>
+
+                    <h3>Extender interfaces</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">interface</span> <span class="ty">Animal</span> {
+  nombre: <span class="ty">string</span>;
+  edad: <span class="ty">number</span>;
+}
+
+<span class="kw">interface</span> <span class="ty">Perro</span> <span class="kw">extends</span> <span class="ty">Animal</span> {
+  raza: <span class="ty">string</span>;
+  ladrar(): <span class="ty">void</span>;
+}
+
+<span class="cm">// Extender múltiples interfaces</span>
+<span class="kw">interface</span> <span class="ty">AdminUser</span> <span class="kw">extends</span> <span class="ty">User</span>, <span class="ty">Timestamps</span> {
+  role: <span class="st">"admin"</span>;
+  permissions: <span class="ty">string</span>[];
+}</pre>
+                    </div>
+
+                    <h3>Intersection Types (&)</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">type</span> <span class="ty">Timestamps</span> = {
+  createdAt: <span class="ty">Date</span>;
+  updatedAt: <span class="ty">Date</span>;
+};
+
+<span class="kw">type</span> <span class="ty">UserWithTimestamps</span> = <span class="ty">User</span> & <span class="ty">Timestamps</span>;
+<span class="cm">// Tiene TODOS los campos de User MÁS los de Timestamps</span></pre>
+                    </div>
+
+                    <h3>Index Signatures</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">interface</span> <span class="ty">Dictionary</span> {
+  [key: <span class="ty">string</span>]: <span class="ty">string</span>;
+}
+
+<span class="kw">const</span> colores: <span class="ty">Dictionary</span> = {
+  rojo: <span class="st">"#ff0000"</span>,
+  verde: <span class="st">"#00ff00"</span>,
+};
+
+<span class="cm">// Objetos como mapas con Record (más limpio)</span>
+<span class="kw">type</span> <span class="ty">ColoresMap</span> = <span class="ty">Record</span>&lt;<span class="ty">string</span>, <span class="ty">string</span>&gt;;</pre>
+                    </div>
+
+                    <h3>Interface con métodos</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">interface</span> <span class="ty">Repository</span>&lt;<span class="ty">T</span>&gt; {
+  findById(id: <span class="ty">number</span>): <span class="ty">Promise</span>&lt;<span class="ty">T</span> | <span class="ty">null</span>&gt;;
+  findAll(): <span class="ty">Promise</span>&lt;<span class="ty">T</span>[]&gt;;
+  save(entity: <span class="ty">T</span>): <span class="ty">Promise</span>&lt;<span class="ty">T</span>&gt;;
+  delete(id: <span class="ty">number</span>): <span class="ty">Promise</span>&lt;<span class="ty">void</span>&gt;;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORIA 4 -->
+            <div class="page" id="page-t4">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 1 / Type vs Interface</div>
+                    <h2>⚖️ Type vs Interface</h2>
+                    <p>La pregunta más frecuente en entrevistas de TypeScript. Acá la respuesta definitiva.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>Las diferencias clave</h3>
+                    <table class="compare-table">
+                        <tr>
+                            <th>Característica</th>
+                            <th>interface</th>
+                            <th>type</th>
+                        </tr>
+                        <tr>
+                            <td>Objetos</td>
+                            <td>✅ Ideal</td>
+                            <td>✅ Funciona</td>
+                        </tr>
+                        <tr>
+                            <td>Primitivos</td>
+                            <td>❌ No puede</td>
+                            <td>✅ type ID = string | number</td>
+                        </tr>
+                        <tr>
+                            <td>Uniones</td>
+                            <td>❌ No puede</td>
+                            <td>✅ type A = B | C</td>
+                        </tr>
+                        <tr>
+                            <td>Extender</td>
+                            <td>✅ extends</td>
+                            <td>✅ & (intersection)</td>
+                        </tr>
+                        <tr>
+                            <td>Declaration Merging</td>
+                            <td>✅ Sí (reopening)</td>
+                            <td>❌ No</td>
+                        </tr>
+                        <tr>
+                            <td>Implementar en clase</td>
+                            <td>✅ implements</td>
+                            <td>✅ implements (si es objeto)</td>
+                        </tr>
+                        <tr>
+                            <td>Mapped Types</td>
+                            <td>❌ No puede</td>
+                            <td>✅ Sí</td>
+                        </tr>
+                    </table>
+
+                    <h3>Cuándo usar cada uno</h3>
+                    <div class="callout tip">
+                        <span class="callout-icon">📌</span>
+                        <div>Regla práctica de la industria: <strong>interface para objetos y clases</strong>, <strong>type para todo lo demás</strong> (unions, primitivos, mapped types, utility types).</div>
+                    </div>
+
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// ✅ interface — ideal para objetos/contratos</span>
+<span class="kw">interface</span> <span class="ty">User</span> {
+  id: <span class="ty">number</span>;
+  name: <span class="ty">string</span>;
+}
+
+<span class="cm">// ✅ type — ideal para uniones y aliases</span>
+<span class="kw">type</span> <span class="ty">Status</span> = <span class="st">"pending"</span> | <span class="st">"active"</span> | <span class="st">"inactive"</span>;
+<span class="kw">type</span> <span class="ty">ID</span> = <span class="ty">string</span> | <span class="ty">number</span>;
+<span class="kw">type</span> <span class="ty">Callback</span> = () => <span class="ty">void</span>;
+
+<span class="cm">// Declaration Merging (solo interfaces)</span>
+<span class="kw">interface</span> <span class="ty">Window</span> {
+  myCustomProp: <span class="ty">string</span>; <span class="cm">// Agrega a Window global</span>
+}
+
+<span class="cm">// type no puede hacer esto:</span>
+<span class="cm">// type Window = { ... } // ❌ Duplicate identifier</span></pre>
+                    </div>
+
+                    <h3>Lo que type puede hacer y interface no</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Tipos condicionales</span>
+<span class="kw">type</span> <span class="ty">IsString</span>&lt;<span class="ty">T</span>&gt; = <span class="ty">T</span> <span class="kw">extends</span> <span class="ty">string</span> ? <span class="kw">true</span> : <span class="kw">false</span>;
+
+<span class="cm">// Mapped types</span>
+<span class="kw">type</span> <span class="ty">Optional</span>&lt;<span class="ty">T</span>&gt; = {
+  [<span class="ty">K</span> <span class="kw">in keyof</span> <span class="ty">T</span>]?: <span class="ty">T</span>[<span class="ty">K</span>];
+};
+
+<span class="cm">// Template literal types</span>
+<span class="kw">type</span> <span class="ty">EventName</span> = <span class="st">`on${Capitalize&lt;string&gt;}`</span>;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORIA 5: UNIONS -->
+            <div class="page" id="page-t5">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 1 / Union Types</div>
+                    <h2>🔀 Union Types y Narrowing</h2>
+                    <p>Tipos que pueden ser uno de varios valores, y cómo discriminarlos en runtime.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>Union Types básicos</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">let</span> id: <span class="ty">string</span> | <span class="ty">number</span>;
+id = <span class="st">"abc123"</span>; <span class="cm">// ✅</span>
+id = <span class="nu">42</span>;       <span class="cm">// ✅</span>
+
+<span class="kw">type</span> <span class="ty">Status</span> = <span class="st">"loading"</span> | <span class="st">"success"</span> | <span class="st">"error"</span>;
+<span class="kw">type</span> <span class="ty">Color</span> = <span class="st">"rojo"</span> | <span class="st">"verde"</span> | <span class="st">"azul"</span>;</pre>
+                    </div>
+
+                    <h3>Narrowing con typeof</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">function</span> <span class="fn">procesar</span>(valor: <span class="ty">string</span> | <span class="ty">number</span>): <span class="ty">string</span> {
+  <span class="kw">if</span> (<span class="kw">typeof</span> valor === <span class="st">"string"</span>) {
+    <span class="kw">return</span> valor.toUpperCase(); <span class="cm">// TS sabe: string</span>
+  }
+  <span class="kw">return</span> valor.toFixed(<span class="nu">2</span>); <span class="cm">// TS sabe: number</span>
+}</pre>
+                    </div>
+
+                    <h3>Discriminated Unions (patrón esencial)</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">type</span> <span class="ty">Shape</span> =
+  | { kind: <span class="st">"circle"</span>; radius: <span class="ty">number</span> }
+  | { kind: <span class="st">"square"</span>; side: <span class="ty">number</span> }
+  | { kind: <span class="st">"triangle"</span>; base: <span class="ty">number</span>; height: <span class="ty">number</span> };
+
+<span class="kw">function</span> <span class="fn">getArea</span>(shape: <span class="ty">Shape</span>): <span class="ty">number</span> {
+  <span class="kw">switch</span> (shape.kind) {
+    <span class="kw">case</span> <span class="st">"circle"</span>:
+      <span class="kw">return</span> Math.PI * shape.radius ** <span class="nu">2</span>;
+    <span class="kw">case</span> <span class="st">"square"</span>:
+      <span class="kw">return</span> shape.side ** <span class="nu">2</span>;
+    <span class="kw">case</span> <span class="st">"triangle"</span>:
+      <span class="kw">return</span> (shape.base * shape.height) / <span class="nu">2</span>;
+  }
+}</pre>
+                    </div>
+
+                    <h3>Type Guards personalizados</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">interface</span> <span class="ty">Dog</span> { bark(): <span class="ty">void</span>; }
+<span class="kw">interface</span> <span class="ty">Cat</span> { meow(): <span class="ty">void</span>; }
+
+<span class="kw">function</span> <span class="fn">isDog</span>(animal: <span class="ty">Dog</span> | <span class="ty">Cat</span>): animal <span class="kw">is</span> <span class="ty">Dog</span> {
+  <span class="kw">return</span> <span class="st">"bark"</span> <span class="kw">in</span> animal;
+}
+
+<span class="kw">function</span> <span class="fn">makeSound</span>(animal: <span class="ty">Dog</span> | <span class="ty">Cat</span>) {
+  <span class="kw">if</span> (<span class="fn">isDog</span>(animal)) {
+    animal.bark(); <span class="cm">// TS sabe que es Dog</span>
+  } <span class="kw">else</span> {
+    animal.meow(); <span class="cm">// TS sabe que es Cat</span>
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORIA 6: GENERICS -->
+            <div class="page" id="page-t6">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 1 / Generics</div>
+                    <h2>🧬 Generics</h2>
+                    <p>El feature más poderoso de TypeScript. Imprescindible para React y APIs robustas.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>¿Qué son los Generics?</h3>
+                    <p>Permiten escribir código que funciona con <strong>cualquier tipo</strong>, manteniéndose type-safe. Es como un "placeholder" de tipo.</p>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Sin generics — repetido, no type-safe</span>
+<span class="kw">function</span> <span class="fn">identityStr</span>(val: <span class="ty">string</span>): <span class="ty">string</span> { <span class="kw">return</span> val; }
+<span class="kw">function</span> <span class="fn">identityNum</span>(val: <span class="ty">number</span>): <span class="ty">number</span> { <span class="kw">return</span> val; }
+
+<span class="cm">// Con generics — una sola función, completamente type-safe</span>
+<span class="kw">function</span> <span class="fn">identity</span>&lt;<span class="ty">T</span>&gt;(val: <span class="ty">T</span>): <span class="ty">T</span> { <span class="kw">return</span> val; }
+
+identity&lt;<span class="ty">string</span>&gt;(<span class="st">"hola"</span>); <span class="cm">// T = string</span>
+identity(<span class="nu">42</span>);            <span class="cm">// TS infiere T = number</span></pre>
+                    </div>
+
+                    <h3>Generics en funciones con constraints</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// T debe tener la propiedad length</span>
+<span class="kw">function</span> <span class="fn">getLength</span>&lt;<span class="ty">T</span> <span class="kw">extends</span> { length: <span class="ty">number</span> }&gt;(item: <span class="ty">T</span>): <span class="ty">number</span> {
+  <span class="kw">return</span> item.length;
+}
+
+<span class="fn">getLength</span>(<span class="st">"hola"</span>);   <span class="cm">// ✅ 4</span>
+<span class="fn">getLength</span>([<span class="nu">1</span>,<span class="nu">2</span>,<span class="nu">3</span>]); <span class="cm">// ✅ 3</span>
+<span class="cm">// getLength(42);   // ❌ number no tiene length</span>
+
+<span class="cm">// Múltiples type params</span>
+<span class="kw">function</span> <span class="fn">pair</span>&lt;<span class="ty">A</span>, <span class="ty">B</span>&gt;(a: <span class="ty">A</span>, b: <span class="ty">B</span>): [<span class="ty">A</span>, <span class="ty">B</span>] {
+  <span class="kw">return</span> [a, b];
+}
+
+<span class="cm">// keyof constraint</span>
+<span class="kw">function</span> <span class="fn">getProperty</span>&lt;<span class="ty">T</span>, <span class="ty">K</span> <span class="kw">extends keyof</span> <span class="ty">T</span>&gt;(obj: <span class="ty">T</span>, key: <span class="ty">K</span>): <span class="ty">T</span>[<span class="ty">K</span>] {
+  <span class="kw">return</span> obj[key];
+}</pre>
+                    </div>
+
+                    <h3>Generics en interfaces y tipos</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Interface genérica</span>
+<span class="kw">interface</span> <span class="ty">ApiResponse</span>&lt;<span class="ty">T</span>&gt; {
+  data: <span class="ty">T</span>;
+  status: <span class="ty">number</span>;
+  message: <span class="ty">string</span>;
+}
+
+<span class="cm">// Usar con tipos concretos</span>
+<span class="kw">type</span> <span class="ty">UserResponse</span> = <span class="ty">ApiResponse</span>&lt;<span class="ty">User</span>&gt;;
+<span class="kw">type</span> <span class="ty">ListResponse</span>&lt;<span class="ty">T</span>&gt; = <span class="ty">ApiResponse</span>&lt;<span class="ty">T</span>[]&gt;;
+
+<span class="cm">// Promesas tipadas</span>
+<span class="kw">async function</span> <span class="fn">fetchUser</span>(id: <span class="ty">number</span>): <span class="ty">Promise</span>&lt;<span class="ty">User</span>&gt; {
+  <span class="kw">const</span> res = <span class="kw">await</span> fetch(<span class="st">`/api/users/${id}`</span>);
+  <span class="kw">return</span> res.json();
+}</pre>
+                    </div>
+
+                    <div class="callout info">
+                        <span class="callout-icon">⚛️</span>
+                        <div>En React, los generics son esenciales para hooks: <code>useState&lt;User | null&gt;</code>, <code>useRef&lt;HTMLInputElement&gt;</code>. Los verás constantemente.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEORIA 7: UTILITY TYPES -->
+            <div class="page" id="page-t7">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 1 / Utility Types</div>
+                    <h2>🛠️ Utility Types</h2>
+                    <p>Transformadores de tipos que usarás todos los días en proyectos reales.</p>
+                </div>
+                <div class="theory-body">
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">interface</span> <span class="ty">User</span> {
+  id: <span class="ty">number</span>;
+  name: <span class="ty">string</span>;
+  email: <span class="ty">string</span>;
+  password: <span class="ty">string</span>;
+  age: <span class="ty">number</span>;
+}</pre>
+                    </div>
+
+                    <h3>Partial&lt;T&gt; — Todos opcionales</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="kw">type</span> <span class="ty">UpdateUser</span> = <span class="ty">Partial</span>&lt;<span class="ty">User</span>&gt;;
+<span class="cm">// { id?: number; name?: string; email?: string; ... }</span>
+
+<span class="cm">// Caso de uso real: función de update</span>
+<span class="kw">function</span> <span class="fn">updateUser</span>(id: <span class="ty">number</span>, data: <span class="ty">Partial</span>&lt;<span class="ty">User</span>&gt;) {
+  <span class="cm">// Solo actualiza los campos provistos</span>
+}</pre>
+                    </div>
+
+                    <h3>Pick&lt;T, K&gt; y Omit&lt;T, K&gt;</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Pick — elegir campos</span>
+<span class="kw">type</span> <span class="ty">UserPreview</span> = <span class="ty">Pick</span>&lt;<span class="ty">User</span>, <span class="st">"id"</span> | <span class="st">"name"</span>&gt;;
+<span class="cm">// { id: number; name: string }</span>
+
+<span class="cm">// Omit — excluir campos</span>
+<span class="kw">type</span> <span class="ty">PublicUser</span> = <span class="ty">Omit</span>&lt;<span class="ty">User</span>, <span class="st">"password"</span>&gt;;
+<span class="cm">// { id: number; name: string; email: string; age: number }</span>
+
+<span class="cm">// CreateUser — sin id (se genera en backend)</span>
+<span class="kw">type</span> <span class="ty">CreateUser</span> = <span class="ty">Omit</span>&lt;<span class="ty">User</span>, <span class="st">"id"</span>&gt;;</pre>
+                    </div>
+
+                    <h3>Record&lt;K, V&gt;</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="cm">// Mapa de tipos</span>
+<span class="kw">type</span> <span class="ty">Traducciones</span> = <span class="ty">Record</span>&lt;<span class="ty">string</span>, <span class="ty">string</span>&gt;;
+<span class="kw">type</span> <span class="ty">StatusMessages</span> = <span class="ty">Record</span>&lt;<span class="st">"loading"</span> | <span class="st">"error"</span> | <span class="st">"success"</span>, <span class="ty">string</span>&gt;;
+
+<span class="kw">const</span> msgs: <span class="ty">StatusMessages</span> = {
+  loading: <span class="st">"Cargando..."</span>,
+  error: <span class="st">"Algo salió mal"</span>,
+  success: <span class="st">"¡Listo!"</span>
+};</pre>
+                    </div>
+
+                    <h3>Required, Readonly, NonNullable</h3>
+                    <div class="code-block" data-lang="typescript">
+                        <pre><span class="ty">Required</span>&lt;<span class="ty">Partial</span>&lt;<span class="ty">User</span>&gt;&gt;  <span class="cm">// todos requeridos</span>
+<span class="ty">Readonly</span>&lt;<span class="ty">User</span>&gt;          <span class="cm">// no se puede mutar</span>
+<span class="ty">NonNullable</span>&lt;<span class="ty">string</span> | <span class="ty">null</span> | <span class="ty">undefined</span>&gt; <span class="cm">// = string</span>
+
+<span class="cm">// Extraer tipo de Promise</span>
+<span class="kw">type</span> <span class="ty">PromiseValue</span>&lt;<span class="ty">T</span>&gt; = <span class="ty">T</span> <span class="kw">extends</span> <span class="ty">Promise</span>&lt;<span class="kw">infer</span> <span class="ty">U</span>&gt; ? <span class="ty">U</span> : <span class="ty">T</span>;
+<span class="kw">type</span> <span class="ty">Awaited</span>&lt;<span class="ty">T</span>&gt; = <span class="ty">T</span> <span class="kw">extends</span> <span class="ty">Promise</span>&lt;<span class="kw">infer</span> <span class="ty">R</span>&gt; ? <span class="ty">R</span> : <span class="ty">T</span>;</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REACT PAGES -->
+            <div class="page" id="page-r1">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 2 — React</div>
+                    <h2>⚛️ TypeScript + React — Props, Hooks y Eventos</h2>
+                    <p>Donde la mayoría falla en entrevistas. Todo lo que necesitás para React profesional.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>Tipar Props de componentes</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="kw">interface</span> <span class="ty">ButtonProps</span> {
+  label: <span class="ty">string</span>;
+  onClick: () => <span class="ty">void</span>;
+  disabled?: <span class="ty">boolean</span>;
+  variant?: <span class="st">"primary"</span> | <span class="st">"secondary"</span> | <span class="st">"danger"</span>;
+  children?: <span class="ty">React.ReactNode</span>;
+}
+
+<span class="kw">const</span> <span class="fn">Button</span> = ({ label, onClick, disabled = <span class="kw">false</span>, variant = <span class="st">"primary"</span> }: <span class="ty">ButtonProps</span>) => (
+  &lt;button onClick={onClick} disabled={disabled} className={variant}&gt;
+    {label}
+  &lt;/button&gt;
+);
+
+<span class="cm">// React.FC — alternativa (menos popular hoy)</span>
+<span class="kw">const</span> <span class="fn">Button2</span>: <span class="ty">React.FC</span>&lt;<span class="ty">ButtonProps</span>&gt; = ({ label }) => &lt;button&gt;{label}&lt;/button&gt;;</pre>
+                    </div>
+
+                    <h3>useState tipado</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="kw">const</span> [count, setCount] = useState&lt;<span class="ty">number</span>&gt;(<span class="nu">0</span>);
+<span class="kw">const</span> [user, setUser] = useState&lt;<span class="ty">User</span> | <span class="ty">null</span>&gt;(<span class="kw">null</span>);
+<span class="kw">const</span> [items, setItems] = useState&lt;<span class="ty">string</span>[]&gt;([]);
+
+<span class="cm">// Con objetos</span>
+<span class="kw">interface</span> <span class="ty">FormState</span> {
+  email: <span class="ty">string</span>;
+  password: <span class="ty">string</span>;
+  isLoading: <span class="ty">boolean</span>;
+}
+
+<span class="kw">const</span> [form, setForm] = useState&lt;<span class="ty">FormState</span>&gt;({
+  email: <span class="st">""</span>,
+  password: <span class="st">""</span>,
+  isLoading: <span class="kw">false</span>
+});</pre>
+                    </div>
+
+                    <h3>useRef tipado</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="kw">const</span> inputRef = useRef&lt;<span class="ty">HTMLInputElement</span>&gt;(<span class="kw">null</span>);
+<span class="kw">const</span> divRef = useRef&lt;<span class="ty">HTMLDivElement</span>&gt;(<span class="kw">null</span>);
+
+<span class="cm">// Para valores mutables (no DOM)</span>
+<span class="kw">const</span> counterRef = useRef&lt;<span class="ty">number</span>&gt;(<span class="nu">0</span>);
+
+<span class="cm">// Usar con null check</span>
+<span class="kw">const</span> <span class="fn">focusInput</span> = () => {
+  inputRef.current?.focus();
+};</pre>
+                    </div>
+
+                    <h3>Eventos tipados</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="cm">// Input change</span>
+<span class="kw">const</span> <span class="fn">handleChange</span> = (e: <span class="ty">React.ChangeEvent</span>&lt;<span class="ty">HTMLInputElement</span>&gt;) => {
+  setForm(prev => ({ ...prev, email: e.target.value }));
+};
+
+<span class="cm">// Select change</span>
+<span class="kw">const</span> <span class="fn">handleSelect</span> = (e: <span class="ty">React.ChangeEvent</span>&lt;<span class="ty">HTMLSelectElement</span>&gt;) => {};
+
+<span class="cm">// Button click</span>
+<span class="kw">const</span> <span class="fn">handleClick</span> = (e: <span class="ty">React.MouseEvent</span>&lt;<span class="ty">HTMLButtonElement</span>&gt;) => {};
+
+<span class="cm">// Form submit</span>
+<span class="kw">const</span> <span class="fn">handleSubmit</span> = (e: <span class="ty">React.FormEvent</span>&lt;<span class="ty">HTMLFormElement</span>&gt;) => {
+  e.preventDefault();
+};</pre>
+                    </div>
+
+                    <h3>Custom Hooks tipados</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="kw">function</span> <span class="fn">useLocalStorage</span>&lt;<span class="ty">T</span>&gt;(key: <span class="ty">string</span>, initial: <span class="ty">T</span>): [<span class="ty">T</span>, (val: <span class="ty">T</span>) => <span class="ty">void</span>] {
+  <span class="kw">const</span> [state, setState] = useState&lt;<span class="ty">T</span>&gt;(() => {
+    <span class="kw">const</span> stored = localStorage.getItem(key);
+    <span class="kw">return</span> stored ? JSON.parse(stored) : initial;
+  });
+
+  <span class="kw">const</span> <span class="fn">setStorage</span> = (val: <span class="ty">T</span>) => {
+    localStorage.setItem(key, JSON.stringify(val));
+    setState(val);
+  };
+
+  <span class="kw">return</span> [state, setStorage];
+}
+
+<span class="cm">// Uso</span>
+<span class="kw">const</span> [theme, setTheme] = <span class="fn">useLocalStorage</span>&lt;<span class="st">"light"</span> | <span class="st">"dark"</span>&gt;(<span class="st">"theme"</span>, <span class="st">"light"</span>);</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- R2, R3 shortcuts -->
+            <div class="page" id="page-r2">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 2 — React / Hooks</div>
+                    <h2>🪝 Hooks tipados — useReducer, useContext</h2>
+                    <p>Hooks avanzados con TypeScript para state management real.</p>
+                </div>
+                <div class="theory-body">
+                    <h3>useReducer tipado</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="kw">type</span> <span class="ty">Action</span> =
+  | { type: <span class="st">"INCREMENT"</span> }
+  | { type: <span class="st">"DECREMENT"</span> }
+  | { type: <span class="st">"RESET"</span>; payload: <span class="ty">number</span> };
+
+<span class="kw">interface</span> <span class="ty">State</span> { count: <span class="ty">number</span>; }
+
+<span class="kw">function</span> <span class="fn">reducer</span>(state: <span class="ty">State</span>, action: <span class="ty">Action</span>): <span class="ty">State</span> {
+  <span class="kw">switch</span> (action.type) {
+    <span class="kw">case</span> <span class="st">"INCREMENT"</span>: <span class="kw">return</span> { count: state.count + <span class="nu">1</span> };
+    <span class="kw">case</span> <span class="st">"DECREMENT"</span>: <span class="kw">return</span> { count: state.count - <span class="nu">1</span> };
+    <span class="kw">case</span> <span class="st">"RESET"</span>:     <span class="kw">return</span> { count: action.payload };
+  }
+}
+
+<span class="kw">const</span> [state, dispatch] = useReducer(reducer, { count: <span class="nu">0</span> });</pre>
+                    </div>
+
+                    <h3>useContext tipado</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="kw">interface</span> <span class="ty">AuthContext</span> {
+  user: <span class="ty">User</span> | <span class="ty">null</span>;
+  login: (credentials: <span class="ty">Credentials</span>) => <span class="ty">Promise</span>&lt;<span class="ty">void</span>&gt;;
+  logout: () => <span class="ty">void</span>;
+}
+
+<span class="kw">const</span> AuthCtx = createContext&lt;<span class="ty">AuthContext</span> | <span class="ty">null</span>&gt;(<span class="kw">null</span>);
+
+<span class="cm">// Custom hook para acceder al context con type guard</span>
+<span class="kw">function</span> <span class="fn">useAuth</span>(): <span class="ty">AuthContext</span> {
+  <span class="kw">const</span> ctx = useContext(AuthCtx);
+  <span class="kw">if</span> (!ctx) <span class="kw">throw new</span> Error(<span class="st">"useAuth fuera de AuthProvider"</span>);
+  <span class="kw">return</span> ctx;
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-r3">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Nivel 2 — React / Eventos</div>
+                    <h2>🎯 Eventos, forwardRef y más patrones React</h2>
+                </div>
+                <div class="theory-body">
+                    <h3>forwardRef tipado</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="kw">interface</span> <span class="ty">InputProps</span> {
+  label: <span class="ty">string</span>;
+  error?: <span class="ty">string</span>;
+}
+
+<span class="kw">const</span> <span class="fn">Input</span> = React.forwardRef&lt;<span class="ty">HTMLInputElement</span>, <span class="ty">InputProps</span>&gt;(
+  ({ label, error }, ref) => (
+    &lt;div&gt;
+      &lt;label&gt;{label}&lt;/label&gt;
+      &lt;input ref={ref} /&gt;
+      {error &amp;&amp; &lt;span&gt;{error}&lt;/span&gt;}
+    &lt;/div&gt;
+  )
+);</pre>
+                    </div>
+
+                    <h3>ComponentProps — reutilizar tipos nativos</h3>
+                    <div class="code-block" data-lang="tsx">
+                        <pre><span class="cm">// Extender props nativas de un elemento HTML</span>
+<span class="kw">type</span> <span class="ty">ButtonProps</span> = React.ComponentProps&lt;<span class="st">"button"</span>&gt; & {
+  variant?: <span class="st">"primary"</span> | <span class="st">"secondary"</span>;
+  isLoading?: <span class="ty">boolean</span>;
+};
+
+<span class="cm">// Spread operator para props nativas</span>
+<span class="kw">const</span> <span class="fn">Button</span> = ({ variant, isLoading, ...rest }: <span class="ty">ButtonProps</span>) => (
+  &lt;button {...rest} disabled={isLoading || rest.disabled} /&gt;
+);</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXERCISES PAGE -->
+            <div class="page" id="page-exercises">
+                <div class="content-header">
+                    <div class="breadcrumb"><span onclick="showPage('home')">Inicio</span> / Ejercicios</div>
+                    <h2>💡 20 Ejercicios prácticos</h2>
+                    <p>Resolvé en tu editor o directamente acá. Validación instantánea con feedback detallado.</p>
+                </div>
+
+                <div class="section-divider">
+                    <h3>⚡ Fundamentos TypeScript</h3>
+                </div>
+                <div class="exercises-list" id="exercises-container"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
