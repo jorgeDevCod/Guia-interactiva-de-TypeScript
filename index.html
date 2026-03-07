@@ -39,6 +39,35 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16.png">
 
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TypeScript Mastery",
+  "description": "Plataforma interactiva para aprender TypeScript con teoría, cheatsheet y 20 ejercicios prácticos con validación instantánea.",
+  "url": "https://typescript-mastery.dev/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Organization",
+    "name": "TypeScript Mastery"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "TypeScript",
+    "description": "Lenguaje de programación tipado superset de JavaScript"
+  },
+  "educationalLevel": "Beginner to Advanced",
+  "teaches": ["TypeScript", "JavaScript", "React", "JSX", "RxJS", "Generics", "Utility Types"]
+}
+</script>
 
 </head>
 
@@ -1097,6 +1126,8 @@ identity(<span class="nu">42</span>);            <span class="cm">// TS infiere 
         </main>
     </div>
 
+    <!-- TypeScript compiler from CDN  -->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.0/babel.min.js"></script>
     <script src="app.js"></script>
 </body>
 

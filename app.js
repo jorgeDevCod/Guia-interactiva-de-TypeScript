@@ -4,7 +4,7 @@
     // ============================================
     // EXERCISES DATA
     // ============================================
-    var exercises = [
+    let exercises = [
         {
             id: 1, num: "01", lang: "TypeScript", diff: "easy",
             title: "Tipar variables básicas",
@@ -292,8 +292,8 @@
     // VALIDATION ENGINE
     // ============================================
     function runChecks( code, checks ) {
-        for ( var i = 0; i < checks.length; i++ ) {
-            var c = checks[ i ];
+        for ( let i = 0; i < checks.length; i++ ) {
+            let c = checks[ i ];
             if ( c.neg ) {
                 if ( c.r.test( code ) ) return { ok: false, msg: c.m };
             } else {
@@ -306,14 +306,14 @@
     // ============================================
     // STATE
     // ============================================
-    var solved = {};
+    let solved = {};
 
     function updateProgress() {
-        var count = Object.keys( solved ).length;
-        var pct = Math.round( count / exercises.length * 100 );
-        var fill = document.getElementById( 'progress-fill' );
-        var pctEl = document.getElementById( 'progress-pct' );
-        var badge = document.getElementById( 'ex-badge' );
+        let count = Object.keys( solved ).length;
+        let pct = Math.round( count / exercises.length * 100 );
+        let fill = document.getElementById( 'progress-fill' );
+        let pctEl = document.getElementById( 'progress-pct' );
+        let badge = document.getElementById( 'ex-badge' );
         if ( fill ) fill.style.width = pct + '%';
         if ( pctEl ) pctEl.textContent = pct + '%';
         if ( badge ) badge.textContent = count + '/' + exercises.length;
@@ -323,44 +323,44 @@
     // RENDER EXERCISES — usando DOM API puro
     // ============================================
     function renderExercises() {
-        var container = document.getElementById( 'exercises-container' );
+        let container = document.getElementById( 'exercises-container' );
         if ( !container ) return;
         container.innerHTML = '';
 
-        var diffMap = { easy: 'easy', medium: 'med', hard: 'hard' };
-        var diffLabel = { easy: 'Fácil', medium: 'Medio', hard: 'Difícil' };
+        let diffMap = { easy: 'easy', medium: 'med', hard: 'hard' };
+        let diffLabel = { easy: 'Fácil', medium: 'Medio', hard: 'Difícil' };
 
-        for ( var i = 0; i < exercises.length; i++ ) {
-            var ex = exercises[ i ];
-            var card = document.createElement( 'div' );
+        for ( let i = 0; i < exercises.length; i++ ) {
+            let ex = exercises[ i ];
+            let card = document.createElement( 'div' );
             card.className = 'exercise-card';
             card.id = 'ex-card-' + ex.id;
 
             // HEADER
-            var header = document.createElement( 'div' );
+            let header = document.createElement( 'div' );
             header.className = 'exercise-header';
             header.setAttribute( 'onclick', 'toggleEx(' + ex.id + ')' );
 
-            var numEl = document.createElement( 'div' );
+            let numEl = document.createElement( 'div' );
             numEl.className = 'exercise-num';
             numEl.id = 'ex-num-' + ex.id;
             numEl.textContent = ex.num;
 
-            var info = document.createElement( 'div' );
+            let info = document.createElement( 'div' );
             info.className = 'exercise-info';
 
-            var titleEl = document.createElement( 'div' );
+            let titleEl = document.createElement( 'div' );
             titleEl.className = 'exercise-title';
             titleEl.textContent = ex.title;
 
-            var meta = document.createElement( 'div' );
+            let meta = document.createElement( 'div' );
             meta.className = 'exercise-meta';
 
-            var diffBadge = document.createElement( 'span' );
+            let diffBadge = document.createElement( 'span' );
             diffBadge.className = 'diff ' + ( diffMap[ ex.diff ] || ex.diff );
             diffBadge.textContent = diffLabel[ ex.diff ] || ex.diff;
 
-            var langBadge = document.createElement( 'span' );
+            let langBadge = document.createElement( 'span' );
             langBadge.className = 'exercise-type';
             langBadge.textContent = ex.lang;
 
@@ -369,7 +369,7 @@
             info.appendChild( titleEl );
             info.appendChild( meta );
 
-            var toggleArrow = document.createElement( 'span' );
+            let toggleArrow = document.createElement( 'span' );
             toggleArrow.className = 'exercise-toggle';
             toggleArrow.id = 'toggle-' + ex.id;
             toggleArrow.textContent = '▼';
@@ -379,42 +379,42 @@
             header.appendChild( toggleArrow );
 
             // BODY
-            var body = document.createElement( 'div' );
+            let body = document.createElement( 'div' );
             body.className = 'exercise-body';
             body.id = 'body-' + ex.id;
 
-            var descEl = document.createElement( 'div' );
+            let descEl = document.createElement( 'div' );
             descEl.className = 'exercise-desc';
             descEl.style.whiteSpace = 'pre-wrap';
             descEl.textContent = ex.desc;
 
             // Solution area
-            var solArea = document.createElement( 'div' );
+            let solArea = document.createElement( 'div' );
             solArea.className = 'solution-area';
 
-            var solLabel = document.createElement( 'div' );
+            let solLabel = document.createElement( 'div' );
             solLabel.className = 'solution-label';
             solLabel.textContent = 'Tu solución';
 
-            var textarea = document.createElement( 'textarea' );
+            let textarea = document.createElement( 'textarea' );
             textarea.className = 'solution-input';
             textarea.id = 'input-' + ex.id;
             textarea.placeholder = '// Escribí o pegá tu código aquí...\n// Podés resolverlo en tu editor local y pegar el resultado';
 
-            var actions = document.createElement( 'div' );
+            let actions = document.createElement( 'div' );
             actions.className = 'solution-actions';
 
-            var btnValidar = document.createElement( 'button' );
+            let btnValidar = document.createElement( 'button' );
             btnValidar.className = 'btn btn-primary';
             btnValidar.textContent = '▶ Validar';
             btnValidar.setAttribute( 'onclick', 'validateEx(' + ex.id + ')' );
 
-            var btnSol = document.createElement( 'button' );
+            let btnSol = document.createElement( 'button' );
             btnSol.className = 'btn btn-secondary';
             btnSol.textContent = 'Ver solución';
             btnSol.setAttribute( 'onclick', 'toggleSol(' + ex.id + ')' );
 
-            var btnHint = document.createElement( 'button' );
+            let btnHint = document.createElement( 'button' );
             btnHint.className = 'hint-toggle';
             btnHint.textContent = '💡 Hint';
             btnHint.setAttribute( 'onclick', 'toggleHint(' + ex.id + ')' );
@@ -423,23 +423,23 @@
             actions.appendChild( btnSol );
             actions.appendChild( btnHint );
 
-            var hintBox = document.createElement( 'div' );
+            let hintBox = document.createElement( 'div' );
             hintBox.className = 'hint-box';
             hintBox.id = 'hint-' + ex.id;
             hintBox.style.whiteSpace = 'pre-wrap';
             hintBox.textContent = ex.hint;
 
-            var fbBox = document.createElement( 'div' );
+            let fbBox = document.createElement( 'div' );
             fbBox.className = 'feedback';
             fbBox.id = 'fb-' + ex.id;
 
-            var solBox = document.createElement( 'div' );
+            let solBox = document.createElement( 'div' );
             solBox.className = 'expected-solution';
             solBox.id = 'sol-' + ex.id;
-            var solBoxLabel = document.createElement( 'div' );
+            let solBoxLabel = document.createElement( 'div' );
             solBoxLabel.className = 'expected-label';
             solBoxLabel.textContent = 'SOLUCIÓN CORRECTA';
-            var solPre = document.createElement( 'pre' );
+            let solPre = document.createElement( 'pre' );
             solPre.textContent = ex.solution;
             solBox.appendChild( solBoxLabel );
             solBox.appendChild( solPre );
@@ -466,34 +466,34 @@
     // INTERACTIONS
     // ============================================
     window.toggleEx = function ( id ) {
-        var body = document.getElementById( 'body-' + id );
-        var arr = document.getElementById( 'toggle-' + id );
+        let body = document.getElementById( 'body-' + id );
+        let arr = document.getElementById( 'toggle-' + id );
         if ( !body ) return;
-        var open = body.classList.contains( 'open' );
+        let open = body.classList.contains( 'open' );
         body.classList.toggle( 'open', !open );
         if ( arr ) arr.classList.toggle( 'open', !open );
     };
 
     window.toggleHint = function ( id ) {
-        var el = document.getElementById( 'hint-' + id );
+        let el = document.getElementById( 'hint-' + id );
         if ( el ) el.classList.toggle( 'show' );
     };
 
     window.toggleSol = function ( id ) {
-        var el = document.getElementById( 'sol-' + id );
+        let el = document.getElementById( 'sol-' + id );
         if ( el ) el.classList.toggle( 'show' );
     };
 
     window.validateEx = function ( id ) {
-        var ex = null;
-        for ( var i = 0; i < exercises.length; i++ ) {
+        let ex = null;
+        for ( let i = 0; i < exercises.length; i++ ) {
             if ( exercises[ i ].id === id ) { ex = exercises[ i ]; break; }
         }
         if ( !ex ) return;
 
-        var textarea = document.getElementById( 'input-' + id );
-        var fb = document.getElementById( 'fb-' + id );
-        var code = textarea ? textarea.value.trim() : '';
+        let textarea = document.getElementById( 'input-' + id );
+        let fb = document.getElementById( 'fb-' + id );
+        let code = textarea ? textarea.value.trim() : '';
 
         if ( !code ) {
             fb.className = 'feedback show error';
@@ -501,13 +501,13 @@
             return;
         }
 
-        var result = runChecks( code, ex.checks );
+        let result = runChecks( code, ex.checks );
 
         if ( result.ok ) {
             fb.className = 'feedback show success';
             fb.innerHTML = '<div class="fb-title">✅ ¡Correcto! Ejercicio completado.</div>Tu código cumple todos los requisitos. ¡Excelente trabajo!';
             solved[ id ] = true;
-            var numEl = document.getElementById( 'ex-num-' + id );
+            let numEl = document.getElementById( 'ex-num-' + id );
             if ( numEl ) { numEl.textContent = '✓'; numEl.classList.add( 'done' ); }
             updateProgress();
         } else {
@@ -520,19 +520,19 @@
     // NAVIGATION
     // ============================================
     window.showPage = function ( pageId ) {
-        var pages = document.querySelectorAll( '.page' );
-        for ( var i = 0; i < pages.length; i++ ) pages[ i ].classList.remove( 'active' );
-        var navItems = document.querySelectorAll( '.nav-item' );
-        for ( var i = 0; i < navItems.length; i++ ) navItems[ i ].classList.remove( 'active' );
+        let pages = document.querySelectorAll( '.page' );
+        for ( let i = 0; i < pages.length; i++ ) pages[ i ].classList.remove( 'active' );
+        let navItems = document.querySelectorAll( '.nav-item' );
+        for ( let i = 0; i < navItems.length; i++ ) navItems[ i ].classList.remove( 'active' );
 
-        var page = document.getElementById( 'page-' + pageId );
+        let page = document.getElementById( 'page-' + pageId );
         if ( page ) page.classList.add( 'active' );
 
-        var main = document.getElementById( 'main' );
+        let main = document.getElementById( 'main' );
         if ( main ) main.scrollTop = 0;
 
-        for ( var i = 0; i < navItems.length; i++ ) {
-            var oc = navItems[ i ].getAttribute( 'onclick' ) || '';
+        for ( let i = 0; i < navItems.length; i++ ) {
+            let oc = navItems[ i ].getAttribute( 'onclick' ) || '';
             if ( oc.indexOf( "'" + pageId + "'" ) !== -1 ) navItems[ i ].classList.add( 'active' );
         }
 
