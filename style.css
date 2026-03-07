@@ -3,8 +3,8 @@
     --bg2: #111118;
     --bg3: #1a1a24;
     --bg4: #22223a;
-    --accent: #7c6aff;
-    --accent2: #2c39b0;
+    --accent: #5241d8;
+    --accent2: #1e33ec;
     --accent3: #38bdf8;
     --green: #34d399;
     --red: #f87171;
@@ -73,7 +73,7 @@ body::before {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg, rgba(124, 106, 255, 0.2), rgba(56, 189, 248, 0.1));
+    background: linear-gradient(135deg, rgba(124, 106, 255, 0.15), rgba(56, 189, 248, 0.1));
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 8px 14px;
@@ -82,7 +82,8 @@ body::before {
 
 .logo-badge span {
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 700;
     color: var(--accent2);
     letter-spacing: 2px;
     text-transform: uppercase;
